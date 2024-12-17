@@ -22,22 +22,22 @@
 
   vars:
     ansible_python_interpreter: /usr/bin/python3.10
-    keypair: Mumbai
+    keypair: Demo_key
     instance_type: t2.micro
-    image_id: ami-0f5ee92e2d63afc18
+    image_id: ami-0e2c8caa4b6378d8c
     wait: yes
     group: webserver
     count: 1
     region: ap-south-1
-    security_group: ec2-security-group
+    security_group: tf_ec2
     tag_name:
-      Name: Aj-ec2   
+      Name: ec2_terrafoem   
 
   tasks:
     - name: Create a security group
       amazon.aws.ec2_group:
         name: "{{ security_group }}"
-        description: Security Group for webserver Servers
+        description:terraform
         region: "{{ region }}"
         rules:
           - proto: tcp
@@ -74,15 +74,15 @@
         region: "{{ region }}"
         key_name: "{{ keypair }}"
         count: "{{ count }}"
-<<<<<<< HEAD:ec2.yml
+<<<<<<< HEAD:aws_ec2.yaml
 =======
         tags: "{{ tag_name }}"
->>>>>>> 8a4f7adb77293a7d086f98dfa3d01770078bbc46:ec2.yaml
+>>>>>>> 8a4f7adb77293a7d086f98dfa3d01770078bbc46:aws_ec2.yaml
         user_data: |
           #!/bin/bash
           sudo apt update -y
           sudo apt install docker.io -y
           sudo systemctl start docker
           sudo systemctl enable docker
-          sudo docker run -d --name 2048 -p 3000:3000 sevenajay/2048:latest
+          sudo docker run -d --name terraform -p 3000:3000 ajaynalluri/terraform:latest
       register: ec2
