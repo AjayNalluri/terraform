@@ -7,8 +7,7 @@
 
   pre_tasks:
     - name: Gather facts
-      setup:
-            
+      setup:   
     - name: Print python version
       debug:
         msg: "Using Python {{ ansible_python_version }}"
