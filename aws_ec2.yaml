@@ -6,7 +6,6 @@
   tags: provisioning
 
   pre_tasks:
-
     - name: Gather facts
       setup:
             
